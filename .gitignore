@@ -1,0 +1,13 @@
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
+# Python bytecode
+*.pyc
+# Environment
+env/
+venv/
+ENV/
+# macOS
+.Spotlight-V100
+.Trashes
