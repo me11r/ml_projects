@@ -1,0 +1,144 @@
+═════════════════════════════════════════════════════════════════════════════════
+ENDTERM PROJECT FILES MANIFEST
+═════════════════════════════════════════════════════════════════════════════════
+
+DOCUMENTATION & REPORTS (READ THESE FIRST)
+───────────────────────────────────────────
+  ✓ ANALYSIS_REPORT.md                  - Comprehensive 7-part analysis
+  ✓ SUMMARY_AND_NEXT_STEPS.txt          - Executive summary & recommendations
+  ✓ FILES_MANIFEST.txt                  - This file
+
+JUPYTER NOTEBOOKS (INTERACTIVE)
+────────────────────────────────
+  ✓ main.ipynb                          - Original project notebook
+  ✓ FINAL_IMPROVED_MODEL.ipynb          - Final comprehensive notebook
+                                          with all improvements
+
+ANALYSIS SCRIPTS (Python)
+──────────────────────────
+  1. analysis_good_predictions.py       - Step 1: Identify good vs bad patterns
+  2. deep_analysis.py                   - Step 4: Deep dive into CLTV ranges
+  3. retrain_models.py                  - Step 2: Test filtering strategies 1-2
+  4. feature_hint_strategy.py           - Step 3: Test feature hint (Strategy 3)
+  5. final_solution.py                  - Step 5: Comprehensive comparison
+  6. advanced_strategies.py             - Step 6: Weighted training approaches
+  7. improved_final_notebook.py         - Step 7: Final model training
+
+RESULTS & DATA (CSV FILES)
+──────────────────────────
+  ✓ FINAL_comparison_all_strategies.csv    - Results from final_solution.py
+  ✓ ADVANCED_strategies_results.csv        - Weighted training results
+  ✓ feature_hint_results.csv               - Feature hint strategy results
+  ✓ FINAL_optimized_results.csv            - Optimized models results
+  ✓ comparison_results.csv                 - Curation strategies comparison
+
+GENERATED DATASETS (CSV)
+────────────────────────
+  • train_GOOD_predictions_only.csv        - Good samples only (9,386)
+  • train_BAD_predictions_only.csv         - Bad samples (53,188)
+  • train_MIXED_70good_30bad.csv           - Mixed dataset (13,408)
+  • train_STRATEGY4_low_cltv_range.csv     - Low CLTV filtered (23,614)
+
+ORIGINAL DATA
+──────────────
+  • train_BRCpofr.csv                  - Original training data (89,393 samples)
+  • test_koRSKBP.csv                   - Test data (59,596 samples)
+
+ANALYSIS ARTIFACTS (Numpy Arrays)
+──────────────────────────────────
+  • good_indices_train.npy             - Indices of good predictions in train
+  • good_indices_test.npy              - Indices of good predictions in test
+  • bad_indices_train.npy              - Indices of bad predictions in train
+  • bad_indices_test.npy               - Indices of bad predictions in test
+
+IMAGES
+──────
+  • error_analysis.png                 - Error analysis visualization
+  • feature_importance.png             - Feature importance chart
+
+═════════════════════════════════════════════════════════════════════════════════
+HOW TO USE THIS ANALYSIS
+═════════════════════════════════════════════════════════════════════════════════
+
+FOR PROFESSOR PRESENTATION:
+  1. Start with: ANALYSIS_REPORT.md (read Part 1 & 2)
+  2. Show: FINAL_IMPROVED_MODEL.ipynb (run all cells)
+  3. Explain: The data curation strategies and why they failed
+  4. Conclude: The optimal approach is full data + optimization
+
+FOR REPRODUCING ANALYSIS:
+  1. Run: python3 analysis_good_predictions.py
+  2. Run: python3 deep_analysis.py
+  3. Run: python3 retrain_models.py
+  4. View results in CSV files
+  5. Open FINAL_IMPROVED_MODEL.ipynb for visualization
+
+FOR UNDERSTANDING PATTERNS:
+  1. Read: ANALYSIS_REPORT.md (Part 1 & 3)
+  2. Check: SUMMARY_AND_NEXT_STEPS.txt
+  3. Review: FINAL_comparison_all_strategies.csv
+
+FOR NEXT IMPROVEMENTS:
+  1. Read: SUMMARY_AND_NEXT_STEPS.txt (Recommendations section)
+  2. Start with XGBoost or LightGBM experiments
+  3. Add interaction features
+  4. Try segment-specific models
+
+═════════════════════════════════════════════════════════════════════════════════
+KEY RESULTS SUMMARY
+═════════════════════════════════════════════════════════════════════════════════
+
+BASELINE MODEL:
+  • Type: GradientBoosting Regressor
+  • R² Score: 0.1152
+  • RMSE: 84,384
+  • MAE: 44,402
+
+STRATEGIES TESTED:
+  ✗ Filter to good (9.4k):    R² 0.097 (-12.6%)
+  ✗ Mixed 70/30 (13.4k):      R² 0.099 (-10.8%)
+  ✓ Feature hint:             R² 0.117 (+1.7%)
+  ✗ Low CLTV filter (19.5k):  R² 0.097 (-12.6%)
+  ✗ Very low filter (12.4k):  R² -0.48 (COLLAPSE)
+  ✗ Weighted 2x:              R² 0.113 (-1.7%)
+  ✗ Weighted 3x:              R² 0.106 (-7.8%)
+
+CONCLUSION: Keep FULL dataset. Optimize hyperparameters instead.
+
+═════════════════════════════════════════════════════════════════════════════════
+QUICK START COMMANDS
+═════════════════════════════════════════════════════════════════════════════════
+
+# View analysis report
+$ cat ANALYSIS_REPORT.md
+
+# View summary
+$ cat SUMMARY_AND_NEXT_STEPS.txt
+
+# Run all analysis scripts (sequential)
+$ python3 analysis_good_predictions.py
+$ python3 deep_analysis.py
+$ python3 retrain_models.py
+$ python3 feature_hint_strategy.py
+$ python3 final_solution.py
+$ python3 advanced_strategies.py
+$ python3 improved_final_notebook.py
+
+# Open final notebook
+$ jupyter notebook FINAL_IMPROVED_MODEL.ipynb
+
+# View results
+$ head -20 FINAL_comparison_all_strategies.csv
+$ cat ADVANCED_strategies_results.csv
+
+═════════════════════════════════════════════════════════════════════════════════
+IMPORTANT NOTES
+═════════════════════════════════════════════════════════════════════════════════
+
+1. All scripts are self-contained and can run independently
+2. Results are reproducible (fixed random seeds)
+3. No external data required (using provided train_BRCpofr.csv)
+4. Total analysis time: ~30 minutes
+5. Python 3.8+ required with scikit-learn, pandas, numpy
+
+═════════════════════════════════════════════════════════════════════════════════

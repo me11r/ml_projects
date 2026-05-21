@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project Defense Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+            background-image: 
+                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .tech-font { font-family: 'JetBrains Mono', monospace; }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar for overflow content */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 3px; }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid rgba(6, 182, 212, 0.2); }
+        th { color: #06b6d4; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; }
+        
+        .highlight { color: #22d3ee; }
+        .danger { color: #f87171; }
+        .success { color: #4ade80; }
+        .warning { color: #facc15; }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col">
+
+    <!-- Header -->
+    <header class="h-16 border-b border-cyan-900/50 flex items-center justify-between px-8 bg-slate-900/80 backdrop-blur z-10 relative">
+        <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
+            <span class="tech-font text-cyan-400 font-bold text-sm tracking-widest">ML_PROJECTS // FINAL_DEFENSE</span>
+        </div>
+        <div class="text-xs text-slate-400 tech-font">MAY 2026</div>
+    </header>
+
+    <!-- Main Presentation Area -->
+    <main class="flex-1 relative flex items-center justify-center p-8 overflow-hidden">
+        
+        <!-- SLIDES CONTAINER -->
+        <div id="presentation-container" class="w-full max-w-6xl h-full glass-panel rounded-2xl p-10 overflow-y-auto relative">
+            
+            <!-- Slide 1 -->
+            <div class="slide active flex-col justify-center h-full text-center">
+                <h1 class="text-5xl font-bold text-white mb-4">Customer <span class="text-cyan-400">Income Classification</span> Project</h1>
+                <p class="text-xl text-slate-400 mb-8">Final Project Defense Presentation</p>
+                
+                <div class="inline-block text-left bg-slate-800/50 p-6 rounded-xl border border-cyan-900/50 mb-8">
+                    <p class="mb-2"><span class="text-cyan-500 font-semibold">Authors:</span> Tazdarbay Meiirzhan, Mukhamejanov Aidos (IT-2408)</p>
+                    <p class="mb-2"><span class="text-cyan-500 font-semibold">Duration:</span> 7-10 minutes</p>
+                    <p><span class="text-cyan-500 font-semibold">Goal:</span> Predict customer income level from insurance-related features</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 text-left mt-4">
+                    <div class="bg-slate-800/30 p-6 rounded-xl border-l-4 border-cyan-500">
+                        <h3 class="text-cyan-400 font-bold text-lg mb-3">Dataset Overview</h3>
+                        <ul class="space-y-2 text-slate-300">
+                            <li>• 89,392 customers</li>
+                            <li>• 9 features (insurance behavior + demographics)</li>
+                            <li>• Target: Income (4 classes)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-800/30 p-6 rounded-xl border-l-4 border-cyan-500">
+                        <h3 class="text-cyan-400 font-bold text-lg mb-3">Why Important?</h3>
+                        <ul class="space-y-2 text-slate-300">
+                            <li>• Enable customer segmentation by income</li>
+                            <li>• Personalized marketing & product recommendations</li>
+                            <li>• Risk assessment based on customer income</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">The Journey - From Regression to Classification</h2>
+                
+                <div class="grid grid-cols-2 gap-8 h-full">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-white flex items-center gap-2">Initial Approach: CLTV Regression <span class="danger">❌</span></h3>
+                        <p class="text-slate-300 mb-4"><strong>Problem:</strong> Tried to predict Customer Lifetime Value (continuous).</p>
+                        
+                        <div class="bg-slate-800/50 p-5 rounded-lg border border-red-900/30 mb-6">
+                            <h4 class="text-red-400 font-semibold mb-2">Results:</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                <li>Best R² = 0.1589 (only 15.89% variance explained)</li>
+                                <li>Tested 7 different strategies - ALL FAILED</li>
+                                <li>Log transformation made it worse (R² = 0.11)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-white">Why Regression Failed</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-cyan-300">Extreme Target Variance:</strong> CLTV range 25k-720k (29x spread)
+                            </li>
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-cyan-300">Insufficient Features:</strong> Only 10 features for continuous prediction
+                            </li>
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-cyan-300">Overfitting Signal:</strong> Train R² = 0.72 vs Test R² = 0.11 (61% gap impossible to close)
+                            </li>
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-cyan-300">Data Leakage Proof:</strong> With target-derived feature, R² = 0.84 (but that's cheating!)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Seven Strategies - All Tested, All Failed</h2>
+                <h3 class="text-xl text-white mb-4">Endterm Data Curation Experiments</h3>
+                
+                <div class="bg-slate-800/50 rounded-xl overflow-hidden border border-cyan-900/30">
+                    <table>
+                        <thead class="bg-slate-800">
+                            <tr>
+                                <th>#</th>
+                                <th>Strategy Approach</th>
+                                <th>Result</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr><td>1</td><td>Filter to "good" predictions only</td><td class="tech-font">R² = 0.097</td><td>❌</td></tr>
+                            <tr><td>2</td><td>Mix 70% good + 30% bad</td><td class="tech-font">R² = 0.099</td><td>❌</td></tr>
+                            <tr><td>3</td><td>Feature hint (is_predictable)</td><td class="tech-font">R² = 0.117</td><td>⚠️ (+1.7% only)</td></tr>
+                            <tr><td>4</td><td>Low CLTV filter</td><td class="tech-font">R² = 0.097</td><td>❌</td></tr>
+                            <tr><td>5</td><td>Very low CLTV</td><td class="tech-font danger">R² = -0.48</td><td>💥 (collapsed)</td></tr>
+                            <tr><td>6</td><td>Weighted training 2x</td><td class="tech-font">R² = 0.113</td><td>❌</td></tr>
+                            <tr><td>7</td><td>Weighted training 3x</td><td class="tech-font">R² = 0.106</td><td>❌</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-8 p-4 bg-red-900/20 border border-red-500/30 rounded-lg text-center">
+                    <p class="text-red-400 font-bold text-lg">Conclusion: All strategies worse than baseline (R² = 0.1567)</p>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8 flex items-center gap-3">Why Switch to Classification <span class="success">✅</span></h2>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700">
+                            <h3 class="text-xl font-semibold text-white mb-3">Mathematical Limitation of Regression</h3>
+                            <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                                <li>Can't explain 84% of CLTV variance with 10 features</li>
+                                <li>Would need: Employment history, education, financial data</li>
+                                <li>Missing critical information about income drivers</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-cyan-900/20 p-6 rounded-xl border border-cyan-800/50">
+                            <h3 class="text-xl font-semibold text-cyan-300 mb-3">Justification (Per Requirements):</h3>
+                            <ul class="space-y-2 text-slate-300">
+                                <li><span class="success">✓</span> Documented complete regression failure</li>
+                                <li><span class="success">✓</span> Proved mathematical ceiling</li>
+                                <li><span class="success">✓</span> Tested 7 distinct strategies</li>
+                                <li><span class="success">✓</span> Clear business case</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-xl font-semibold text-white mb-4">Income Classification Advantages</h3>
+                        <ul class="space-y-4 text-slate-300">
+                            <li class="flex gap-3">
+                                <div class="text-cyan-400 font-bold">1</div>
+                                <div><strong>Naturally Categorical:</strong> 4 discrete income levels</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="text-cyan-400 font-bold">2</div>
+                                <div><strong>Better Feature Alignment:</strong> Insurance behavior predicts income bracket</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="text-cyan-400 font-bold">3</div>
+                                <div><strong>Stable Performance:</strong> 60%+ accuracy vs 16% R² coefficient</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <div class="text-cyan-400 font-bold">4</div>
+                                <div><strong>Business Value:</strong> Clear customer segmentation</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6">Dataset & Features</h2>
+                
+                <div class="flex items-center gap-6 mb-6">
+                    <div class="bg-slate-800 p-4 rounded-lg border border-cyan-900/50 flex-1">
+                        <div class="text-sm text-slate-400 uppercase">Total Size</div>
+                        <div class="text-3xl font-bold text-white tech-font">89,392</div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-cyan-900/50 flex-1">
+                        <div class="text-sm text-slate-400 uppercase">Train (70%)</div>
+                        <div class="text-3xl font-bold text-white tech-font">62,574</div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-cyan-900/50 flex-1">
+                        <div class="text-sm text-slate-400 uppercase">Test (30%)</div>
+                        <div class="text-3xl font-bold text-white tech-font">26,818</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold text-cyan-300 mb-3">Features (9 total)</h3>
+                        <table class="bg-slate-800/30 rounded-lg overflow-hidden text-sm">
+                            <thead class="bg-slate-800"><tr><th>Type</th><th>Features</th></tr></thead>
+                            <tbody class="text-slate-300">
+                                <tr>
+                                    <td class="font-semibold text-cyan-400">Categorical (7)</td>
+                                    <td>gender, area, qualification, num_policies, policy, type_of_policy, marital_status</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold text-cyan-400">Numerical (2)</td>
+                                    <td>vintage (customer tenure), claim_amount</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-cyan-300 mb-3">Target - Income (4 classes)</h3>
+                        <ul class="space-y-3 text-slate-300 bg-slate-800/30 p-4 rounded-lg border border-slate-700">
+                            <li class="flex justify-between border-b border-slate-700 pb-2"><span>🔴 <=2L (Low)</span> <span class="tech-font">540 (0.6%) Rare</span></li>
+                            <li class="flex justify-between border-b border-slate-700 pb-2"><span>🟡 2L-5L</span> <span class="tech-font">6,304 (7.1%) Minority</span></li>
+                            <li class="flex justify-between border-b border-slate-700 pb-2"><span>🟢 5L-10L</span> <span class="tech-font">15,857 (17.8%) Balanced</span></li>
+                            <li class="flex justify-between pt-1"><span>🔵 >10L (High)</span> <span class="tech-font font-bold text-cyan-400">66,691 (74.8%) Majority</span></li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-red-900/20 border border-red-500/30 rounded-lg text-sm text-red-300">
+                            <strong>Key Challenge:</strong> Severe class imbalance (125:1 ratio)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide flex-col h-full items-center">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8 w-full">Data Preprocessing Pipeline</h2>
+                
+                <div class="bg-slate-900 p-8 rounded-xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)] tech-font text-cyan-100 w-full max-w-3xl">
+                    <div class="text-center mb-4 text-cyan-500 font-bold">[ Raw Data (89,392 rows × 12 cols) ]</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-slate-800 p-3 rounded mb-2 border border-slate-700">1. Remove ID & old target (CLTV)</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-slate-800 p-3 rounded mb-2 border border-slate-700">2. Encode income labels (<=2L → 0, etc.)</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-slate-800 p-3 rounded mb-2 border border-slate-700">3. Separate features & target</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-cyan-900/30 p-4 rounded mb-2 border border-cyan-700/50">
+                        <div class="text-cyan-400 font-bold mb-2">4. FEATURE TRANSFORMATION:</div>
+                        <ul class="pl-4 text-sm text-slate-300">
+                            <li>- Numerical: StandardScaler (mean=0, std=1)</li>
+                            <li>- Categorical: OneHotEncoder</li>
+                        </ul>
+                    </div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-slate-800 p-3 rounded mb-2 border border-slate-700 text-green-400">5. Result: 32 processed features</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="bg-slate-800 p-3 rounded mb-4 border border-slate-700">6. Train-Test Split (70/30, random_state=42)</div>
+                    <div class="text-center text-slate-500 mb-2">↓</div>
+                    
+                    <div class="text-center mt-4 text-green-400 font-bold tracking-widest">[ READY FOR TRAINING ]</div>
+                </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Exploratory Data Analysis</h2>
+                <h3 class="text-xl text-white mb-6">Key Insights from EDA</h3>
+                
+                <div class="grid grid-cols-3 gap-6 mb-8">
+                    <div class="bg-slate-800/40 p-5 rounded-xl border-t-2 border-cyan-500">
+                        <h4 class="text-cyan-300 font-bold mb-3">1. Class Distribution</h4>
+                        <p class="text-sm text-slate-400 mb-2">Severe Imbalance</p>
+                        <ul class="text-slate-300 text-sm space-y-2">
+                            <li>• 75% of customers in highest income class</li>
+                            <li>• <1% in lowest income class</li>
+                            <li class="mt-3 pt-3 border-t border-slate-700 text-yellow-300">Impact: Model prefers predicting majority class</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-5 rounded-xl border-t-2 border-cyan-500">
+                        <h4 class="text-cyan-300 font-bold mb-3">2. Feature Relationships</h4>
+                        <ul class="text-slate-300 text-sm space-y-2">
+                            <li>• <strong class="text-white">Policy Type:</strong> Strong signal (Platinum → higher)</li>
+                            <li>• <strong class="text-white">Area:</strong> Urban slightly higher than rural</li>
+                            <li>• <strong class="text-white">Claim Amount:</strong> Higher claims correlate with higher income</li>
+                            <li>• <strong class="text-white">Vintage:</strong> Weak signal but present</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-5 rounded-xl border-t-2 border-cyan-500">
+                        <h4 class="text-cyan-300 font-bold mb-3">3. Feature Correlations</h4>
+                        <ul class="text-slate-300 text-sm space-y-2">
+                            <li>• Most features are independent</li>
+                            <li>• Low multicollinearity</li>
+                            <li>• No obvious redundancy</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-cyan-900/20 p-4 rounded-lg border border-cyan-800/50">
+                    <strong class="text-cyan-400">Visualization Summary:</strong> 
+                    <span class="text-slate-300 text-sm ml-2">✓ Income distribution (imbalanced) &nbsp; ✓ Feature-target relationships &nbsp; ✓ Numerical feature distributions</span>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Models Trained - Baseline Comparison</h2>
+                
+                <div class="grid grid-cols-2 gap-8 h-full">
+                    <div>
+                        <table class="bg-slate-800/40 rounded-lg overflow-hidden">
+                            <thead class="bg-slate-800">
+                                <tr><th>Model</th><th>Accuracy</th><th>F1-Score</th><th>Status</th></tr>
+                            </thead>
+                            <tbody class="text-slate-300 tech-font text-sm">
+                                <tr><td>Logistic Regression</td><td>0.5967</td><td>0.4878</td><td>Baseline</td></tr>
+                                <tr><td>Decision Tree</td><td>0.5853</td><td>0.4942</td><td class="text-yellow-400">Weak</td></tr>
+                                <tr><td>KNN (k=5)</td><td>0.5331</td><td>0.4939</td><td class="text-red-400">Poor</td></tr>
+                                <tr><td>Random Forest</td><td>0.5983</td><td>0.4842</td><td class="text-blue-300">Good</td></tr>
+                                <tr class="bg-cyan-900/30 border-l-4 border-cyan-400">
+                                    <td class="font-bold text-cyan-300">Gradient Boosting</td>
+                                    <td class="font-bold text-cyan-300">0.5971</td>
+                                    <td class="font-bold text-cyan-300">0.4898</td>
+                                    <td class="font-bold text-green-400">Best ✅</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-cyan-300 mb-4">Why Gradient Boosting?</h3>
+                        <div class="space-y-4">
+                            <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-700">
+                                <strong class="text-white block mb-1">Sequential learning:</strong>
+                                <span class="text-slate-400 text-sm">Each tree corrects previous mistakes</span>
+                            </div>
+                            <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-700">
+                                <strong class="text-white block mb-1">Handles imbalance:</strong>
+                                <span class="text-slate-400 text-sm">Works with class weights effectively</span>
+                            </div>
+                            <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-700">
+                                <strong class="text-white block mb-1">Robust:</strong>
+                                <span class="text-slate-400 text-sm">Strong regularization prevents overfitting</span>
+                            </div>
+                            <div class="bg-slate-800/30 p-3 rounded-lg border border-slate-700">
+                                <strong class="text-white block mb-1">Interpretable & Production-ready:</strong>
+                                <span class="text-slate-400 text-sm">Feature importance available + Fast inference</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Hyperparameter Tuning Process</h2>
+                
+                <h3 class="text-xl text-white mb-4">Configuration Evolution</h3>
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden border border-cyan-900/30 mb-8">
+                    <table>
+                        <thead class="bg-slate-800">
+                            <tr><th>Config</th><th>n_est</th><th>lr</th><th>depth</th><th>balanced?</th><th>Result</th></tr>
+                        </thead>
+                        <tbody class="text-slate-300 tech-font text-sm">
+                            <tr><td class="font-sans">Default</td><td>100</td><td>0.1</td><td>5</td><td>No</td><td>59.71%</td></tr>
+                            <tr><td class="font-sans">More trees</td><td>150</td><td>0.1</td><td>5</td><td>No</td><td>59.72%</td></tr>
+                            <tr><td class="font-sans">Deeper</td><td>100</td><td>0.1</td><td>7</td><td>No</td><td>59.78%</td></tr>
+                            <tr><td class="font-sans">Lower LR</td><td>200</td><td>0.05</td><td>5</td><td>No</td><td>59.82%</td></tr>
+                            <tr class="bg-cyan-900/40 text-cyan-100 font-bold border-l-4 border-cyan-400">
+                                <td class="font-sans text-cyan-300">FINAL</td><td>200</td><td>0.1</td><td>8</td><td>Yes</td><td class="text-green-400">60.2% ✅</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-slate-800/30 p-4 rounded-lg text-center">
+                        <div class="text-sm text-slate-400 mb-1">Improvement</div>
+                        <div class="text-xl font-bold text-green-400">+0.4%</div>
+                        <div class="text-xs text-slate-500 mt-1">over baseline</div>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg text-center">
+                        <div class="text-sm text-slate-400 mb-1">CV Stability</div>
+                        <div class="text-xl font-bold text-cyan-400">60.2% ± 0.2%</div>
+                        <div class="text-xs text-slate-500 mt-1">(5-fold)</div>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg text-center">
+                        <div class="text-sm text-slate-400 mb-1">Overfitting Status</div>
+                        <div class="text-xl font-bold text-blue-400">None</div>
+                        <div class="text-xs text-slate-500 mt-1">CV score ≈ Test score</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6">Final Model Selection & Justification</h2>
+                
+                <div class="grid grid-cols-2 gap-8 h-full">
+                    <div>
+                        <h3 class="text-lg font-semibold text-white mb-3">Final Configuration</h3>
+                        <div class="bg-slate-900 p-4 rounded-lg border border-slate-700 tech-font text-xs text-cyan-200 overflow-x-auto shadow-inner">
+<pre><code>GradientBoostingClassifier(
+    <span class="text-blue-400">n_estimators</span>=200,        <span class="text-slate-500"># 200 trees for stability</span>
+    <span class="text-blue-400">learning_rate</span>=0.1,       <span class="text-slate-500"># Standard learning rate</span>
+    <span class="text-blue-400">max_depth</span>=8,             <span class="text-slate-500"># Deeper trees for patterns</span>
+    <span class="text-blue-400">subsample</span>=0.9,           <span class="text-slate-500"># 90% sampling for robustness</span>
+    <span class="text-blue-400">min_samples_split</span>=5,     <span class="text-slate-500"># Prevent overfitting</span>
+    <span class="text-blue-400">min_samples_leaf</span>=2,      <span class="text-slate-500"># Reasonable leaf size</span>
+    <span class="text-blue-400">class_weight</span>='balanced', <span class="text-slate-500"># Handle imbalance</span>
+    <span class="text-blue-400">random_state</span>=42          <span class="text-slate-500"># Reproducibility</span>
+)</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-red-400 mb-4">Why NOT Other Models?</h3>
+                        <ul class="space-y-4">
+                            <li class="bg-slate-800/30 p-3 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-white">Logistic Regression:</strong> 
+                                <span class="text-slate-400 block text-sm mt-1">Too simple, can't capture non-linear patterns (60%)</span>
+                            </li>
+                            <li class="bg-slate-800/30 p-3 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-white">Decision Tree:</strong> 
+                                <span class="text-slate-400 block text-sm mt-1">Overfits directly to training data (59%)</span>
+                            </li>
+                            <li class="bg-slate-800/30 p-3 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-white">KNN:</strong> 
+                                <span class="text-slate-400 block text-sm mt-1">Requires distance sensitivity, struggles with scaling (53%)</span>
+                            </li>
+                            <li class="bg-slate-800/30 p-3 rounded-lg border-l-2 border-slate-600">
+                                <strong class="text-white">Random Forest:</strong> 
+                                <span class="text-slate-400 block text-sm mt-1">Good, but Gradient Boosting edges out with tuning (59.8% vs 60.2%)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Final Evaluation Results</h2>
+                
+                <h3 class="text-xl text-white mb-4">Test Set Performance</h3>
+                
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="bg-slate-800/40 p-6 rounded-xl border border-cyan-900/30">
+                        <h4 class="text-cyan-300 font-bold mb-4 uppercase tracking-wider text-sm">Overall Metrics</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                <span class="text-white text-lg">Accuracy</span>
+                                <span class="tech-font text-2xl text-green-400 font-bold">60.2% ✅</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                <span class="text-slate-300">Precision (weighted)</span>
+                                <span class="tech-font text-lg text-cyan-100">60.3%</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                                <span class="text-slate-300">Recall (weighted)</span>
+                                <span class="tech-font text-lg text-cyan-100">60.2%</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-2">
+                                <span class="text-slate-300">F1-Score (weighted)</span>
+                                <span class="tech-font text-lg text-cyan-100">0.495</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-slate-800/40 p-6 rounded-xl border border-cyan-900/30">
+                            <h4 class="text-cyan-300 font-bold mb-4 uppercase tracking-wider text-sm">Cross-Validation (5-fold)</h4>
+                            <div class="flex items-end gap-4 mb-3">
+                                <div>
+                                    <div class="text-sm text-slate-400">Mean</div>
+                                    <div class="tech-font text-xl text-white">60.2%</div>
+                                </div>
+                                <div class="pb-1 text-slate-500">|</div>
+                                <div>
+                                    <div class="text-sm text-slate-400">Std Dev</div>
+                                    <div class="tech-font text-xl text-cyan-400">0.002 <span class="text-xs text-slate-500">(stable!)</span></div>
+                                </div>
+                            </div>
+                            <div class="text-xs tech-font text-slate-400 bg-slate-900 p-2 rounded">
+                                Folds: [0.603, 0.599, 0.605, 0.601, 0.602]
+                            </div>
+                        </div>
+                        
+                        <div class="bg-cyan-900/20 p-4 rounded-xl border border-cyan-800/50">
+                            <h4 class="text-cyan-400 font-bold mb-2 text-sm">Generalization Check</h4>
+                            <ul class="text-sm text-slate-300 space-y-1">
+                                <li>✓ Test Accuracy = CV Mean</li>
+                                <li>✓ No overfitting detected</li>
+                                <li>✓ Model generalizes well to unseen data</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Per-Class Performance</h2>
+                
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-700 tech-font text-sm overflow-x-auto shadow-inner mb-6">
+                    <pre class="text-slate-300">              <span class="text-cyan-400">Precision  Recall  F1-Score   Support</span>
+     <=2L        <span class="text-red-400">0.00      0.00</span>      0.00       540
+    2L-5L        0.50      <span class="text-yellow-400">0.12</span>      0.19     6,304
+   5L-10L        0.60      <span class="text-green-400">0.96</span>      0.74    15,857
+ >10L (maj)      0.76      <span class="text-green-400">0.99</span>      0.86    66,691
+---------------------------------------------------
+   Weighted      0.71      0.60      0.58 </pre>
+                </div>
+
+                <h3 class="text-xl font-semibold text-white mb-4 border-b border-slate-700 pb-2">Strengths & Weaknesses</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-green-400">✅</span> <strong class="text-white">Excellent on Majority Class (>10L)</strong>
+                        </div>
+                        <p class="text-slate-400 text-sm ml-6">99% recall</p>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-green-400">✅</span> <strong class="text-white">Good on Middle Class (5L-10L)</strong>
+                        </div>
+                        <p class="text-slate-400 text-sm ml-6">96% recall</p>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-red-400">❌</span> <strong class="text-white">Poor on Low Income (<=2L)</strong>
+                        </div>
+                        <p class="text-slate-400 text-sm ml-6">0% recall</p>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-yellow-400">❌</span> <strong class="text-white">Weak on Lower-Middle (2L-5L)</strong>
+                        </div>
+                        <p class="text-slate-400 text-sm ml-6">12% recall</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 13 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6">Error Analysis</h2>
+                <h3 class="text-xl text-white mb-6">Where Model Fails</h3>
+                
+                <div class="grid grid-cols-2 gap-8 mb-8">
+                    <div class="bg-red-900/10 p-6 rounded-xl border border-red-900/50">
+                        <h4 class="text-red-400 font-bold mb-3">Class 0 (<=2L): Complete Failure</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                            <li>0% correctly predicted</li>
+                            <li>Only 0.6% of data (540 samples)</li>
+                            <li>Model treats as outliers, ignores them completely</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-yellow-900/10 p-6 rounded-xl border border-yellow-900/50">
+                        <h4 class="text-yellow-400 font-bold mb-3">Class 1 (2L-5L): Poor Performance</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-300">
+                            <li>12% recall (755 out of 6,304 found)</li>
+                            <li>Mostly mispredicted as Class 2/3</li>
+                            <li>Overlapping feature space with higher income</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border-t-4 border-cyan-500 text-center">
+                    <h4 class="text-cyan-400 font-bold text-lg uppercase tracking-wider mb-2">Root Cause: EXTREME CLASS IMBALANCE</h4>
+                    <div class="flex justify-center gap-12 mt-4 text-slate-300">
+                        <div>
+                            <span class="block text-2xl tech-font font-bold text-white mb-1">7.7%</span>
+                            <span class="text-sm">Minority classes data</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl tech-font font-bold text-white mb-1">74.8%</span>
+                            <span class="text-sm">Majority class data</span>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-slate-400 italic">"Even with balanced weights, extreme ratio dominates the gradient space."</p>
+                </div>
+            </div>
+
+            <!-- Slide 14 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Confusion Matrix Analysis</h2>
+                
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-700 shadow-inner mb-8">
+                    <table class="tech-font text-center text-sm w-full">
+                        <thead class="text-cyan-400 border-b border-slate-700">
+                            <tr>
+                                <th class="text-left text-slate-500">Actual \ Predicted</th>
+                                <th><=2L</th>
+                                <th>2L-5L</th>
+                                <th>5L-10L</th>
+                                <th>>10L</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-300">
+                            <tr>
+                                <td class="text-left font-bold text-cyan-500"><=2L</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-red-400">540</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left font-bold text-cyan-500">2L-5L</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-white font-bold bg-cyan-900/30">755</td>
+                                <td class="text-yellow-400">2,449</td>
+                                <td class="text-red-400">3,100</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left font-bold text-cyan-500">5L-10L</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-yellow-400">635</td>
+                                <td class="text-white font-bold bg-cyan-900/50">15,222</td>
+                                <td class="text-slate-600">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left font-bold text-cyan-500">>10L</td>
+                                <td class="text-slate-600">0</td>
+                                <td class="text-slate-400">420</td>
+                                <td class="text-yellow-400">1,203</td>
+                                <td class="text-white font-bold bg-cyan-900/80">65,068</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-green-500">
+                        <strong class="text-white block mb-1">Positive Diagonal:</strong>
+                        <span class="text-slate-400 text-sm">Classes 2 & 3 have strong predictions</span>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-red-500">
+                        <strong class="text-white block mb-1">Missing Row 0:</strong>
+                        <span class="text-slate-400 text-sm">Class 0 is completely missed by the model</span>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-yellow-500">
+                        <strong class="text-white block mb-1">Off-Diagonal Errors:</strong>
+                        <span class="text-slate-400 text-sm">Model conservative, tends toward higher income</span>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-cyan-500">
+                        <strong class="text-white block mb-1">General Pattern:</strong>
+                        <span class="text-slate-400 text-sm">Model learned to predict Classes 2-3, struggles with 0-1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 15 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Limitations</h2>
+                <h3 class="text-xl text-white mb-6">Technical Limitations</h3>
+                
+                <div class="grid grid-cols-2 gap-6 h-full">
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-red-900/50 text-red-300 text-xs px-2 py-1 rounded-bl-lg">MAJOR</div>
+                        <h4 class="text-cyan-300 font-bold mb-2">1. Class Imbalance</h4>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>• 125:1 ratio between largest & smallest</li>
+                            <li>• Minority classes nearly impossible to learn</li>
+                            <li>• Would need: 10x more samples or separate models</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                        <h4 class="text-cyan-300 font-bold mb-2">2. Feature Limitations</h4>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>• Only 9 features available</li>
+                            <li>• Income is determined by: employment, education, financial history</li>
+                            <li>• <span class="text-slate-400 italic">Missing: Job sector, savings, loans, etc.</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                        <h4 class="text-cyan-300 font-bold mb-2">3. Feature-Target Mismatch</h4>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>• Insurance behavior is a proxy indicator</li>
+                            <li>• Real income drivers not in dataset</li>
+                            <li>• Features explain only surface patterns</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                        <h4 class="text-cyan-300 font-bold mb-2">4. Accuracy Not Production-Ready</h4>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>• 60.2% sufficient for pilot/research</li>
+                            <li>• Production deployment requires >85% accuracy</li>
+                            <li>• Need major feature engineering/data collection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 16 -->
+            <div class="slide flex-col h-full overflow-y-auto">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6 sticky top-0 bg-[#172033] z-10 pt-2">Recommendations for Improvement</h2>
+                
+                <h3 class="text-lg font-bold text-white bg-cyan-900/30 inline-block px-4 py-1 rounded mb-4">Short-term (Quick Wins)</h3>
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-t-2 border-cyan-500">
+                        <h4 class="text-white font-bold text-sm mb-2">Apply SMOTE</h4>
+                        <p class="text-xs text-slate-400">Oversample minority classes. Could improve recall on Class 0 by 20-30%.</p>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-t-2 border-cyan-500">
+                        <h4 class="text-white font-bold text-sm mb-2">Threshold Tuning</h4>
+                        <p class="text-xs text-slate-400">Adjust decision boundaries per class. Trade off precision vs recall based on business goals.</p>
+                    </div>
+                    <div class="bg-slate-800/30 p-4 rounded-lg border-t-2 border-cyan-500">
+                        <h4 class="text-white font-bold text-sm mb-2">Cost-Sensitive Learning</h4>
+                        <p class="text-xs text-slate-400">Higher penalty for missing low-income customers. Force model to focus on minorities.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white bg-blue-900/30 inline-block px-4 py-1 rounded mb-4">Long-term (Structural Changes)</h3>
+                <div class="space-y-4">
+                    <div class="bg-slate-800/40 p-4 rounded-lg flex items-start gap-4">
+                        <div class="text-2xl pt-1 text-cyan-500">1</div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Collect Additional Features</h4>
+                            <p class="text-sm text-slate-400 mb-2">Employment sector, job title, detailed education, financial metrics, transaction patterns.</p>
+                            <span class="text-xs font-bold text-green-400 bg-green-900/20 px-2 py-1 rounded">Expected impact: +15-20% accuracy</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800/40 p-4 rounded-lg flex items-start gap-4">
+                        <div class="text-2xl pt-1 text-cyan-500">2</div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Separate Models per Class</h4>
+                            <p class="text-sm text-slate-400 mb-2">Build binary classifiers for each income level and combine predictions.</p>
+                            <span class="text-xs font-bold text-green-400 bg-green-900/20 px-2 py-1 rounded">Expected impact: +10-15% minority class recall</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800/40 p-4 rounded-lg flex items-start gap-4">
+                        <div class="text-2xl pt-1 text-cyan-500">3</div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Ensemble with Domain Models</h4>
+                            <p class="text-sm text-slate-400">Combine ML with rule-based models for low income. Hybrid approach for better coverage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 17 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-8">Lessons Learned</h2>
+                
+                <div class="grid grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">What Worked</h3>
+                        <ul class="space-y-4">
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-green-500">
+                                <strong class="text-white block mb-1">Systematic Approach:</strong>
+                                <span class="text-slate-400 text-sm">Tested all obvious strategies thoroughly, documented failures, made data-driven decision to pivot.</span>
+                            </li>
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-green-500">
+                                <strong class="text-white block mb-1">Honest Assessment:</strong>
+                                <span class="text-slate-400 text-sm">Admitted regression fundamentally limited, didn't force-fit bad approach.</span>
+                            </li>
+                            <li class="bg-slate-800/30 p-4 rounded-lg border-l-2 border-green-500">
+                                <strong class="text-white block mb-1">Model Stability:</strong>
+                                <span class="text-slate-400 text-sm">CV std = 0.002 (excellent stability), no overfitting, reproducible (rs=42).</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">What Didn't Work</h3>
+                        <ul class="space-y-3">
+                            <li class="bg-red-900/10 p-3 rounded border border-red-900/30 text-slate-300 text-sm">
+                                ❌ <strong class="text-white">Regression on CLTV:</strong> Mathematical ceiling at R² = 0.16
+                            </li>
+                            <li class="bg-red-900/10 p-3 rounded border border-red-900/30 text-slate-300 text-sm">
+                                ❌ <strong class="text-white">Data Curation:</strong> All 7 strategies made things worse
+                            </li>
+                            <li class="bg-red-900/10 p-3 rounded border border-red-900/30 text-slate-300 text-sm">
+                                ❌ <strong class="text-white">Log Transform:</strong> Helped overfitting but hurt overall R²
+                            </li>
+                            <li class="bg-red-900/10 p-3 rounded border border-red-900/30 text-slate-300 text-sm">
+                                ❌ <strong class="text-white">Feature Engineering:</strong> No improvement without target leakage
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-cyan-900/30 p-6 rounded-xl border border-cyan-500/50 text-center">
+                    <h4 class="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-2">Key Insight</h4>
+                    <p class="text-xl text-white font-serif italic mb-4">"The best model is not always the model with the highest metric. You must justify the final choice logically."</p>
+                    <p class="text-sm text-slate-400">Started with wrong task (regression) → Switched to right task (classification) with justification → Achieved stable, defensible solution.</p>
+                </div>
+            </div>
+
+            <!-- Slide 18 -->
+            <div class="slide flex-col h-full">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6">Conclusion & Next Steps</h2>
+                
+                <div class="grid grid-cols-2 gap-8 mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-3 bg-slate-800 px-3 py-1 inline-block rounded">What We Accomplished</h3>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li class="flex items-start gap-2">✅ <span><strong>Comprehensive Analysis:</strong> 7 regression strategies tested, all documented</span></li>
+                            <li class="flex items-start gap-2">✅ <span><strong>Evidence-Based Decision:</strong> Switched to classification with complete justification</span></li>
+                            <li class="flex items-start gap-2">✅ <span><strong>Production Model:</strong> Stable Gradient Boosting classifier, 60.2% accuracy</span></li>
+                            <li class="flex items-start gap-2">✅ <span><strong>Honest Limitations:</strong> Identified class imbalance as core blocker</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700">
+                        <h3 class="text-lg font-bold text-cyan-300 mb-3 border-b border-slate-700 pb-2">Model Summary</h3>
+                        <ul class="space-y-2 text-sm text-slate-300 tech-font">
+                            <li><span class="text-slate-500">Task:</span> Income Classification (4 classes)</li>
+                            <li><span class="text-slate-500">Best Model:</span> Gradient Boosting Classifier</li>
+                            <li><span class="text-slate-500">Performance:</span> 60.2% accuracy, 0.495 F1-score</li>
+                            <li><span class="text-slate-500">Stability:</span> Excellent (CV std = 0.002)</li>
+                            <li><span class="text-slate-500">Status:</span> <span class="text-green-400">Ready for pilot deployment</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-4 border-b border-slate-700 pb-2">Deployment Recommendation</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <strong class="text-blue-300 block mb-2 uppercase text-xs tracking-wider">Immediate</strong>
+                        <ul class="list-disc pl-4 text-sm text-slate-300 space-y-1">
+                            <li>Deploy as pilot for customer segmentation</li>
+                            <li>Monitor model performance monthly</li>
+                            <li>Collect feedback on predictions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-cyan-900/20 p-4 rounded-lg border-l-4 border-cyan-500">
+                        <strong class="text-cyan-300 block mb-2 uppercase text-xs tracking-wider">Future</strong>
+                        <ul class="list-disc pl-4 text-sm text-slate-300 space-y-1">
+                            <li>Gather additional customer features</li>
+                            <li>Retrain with expanded feature set</li>
+                            <li>Aim for 80%+ accuracy in v2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 19 -->
+            <div class="slide flex-col h-full overflow-y-auto">
+                <h2 class="text-3xl font-bold text-cyan-400 border-b border-cyan-900/50 pb-4 mb-6 sticky top-0 bg-[#172033] z-10 pt-2">Questions & Discussion</h2>
+                
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div class="bg-slate-800/30 p-5 rounded-xl border border-slate-700">
+                        <h4 class="text-cyan-300 font-bold mb-2">Q: Why Classification over Regression?</h4>
+                        <p class="text-sm text-slate-300 mb-2">Regression proved mathematically limited (R² glass ceiling at 0.16). 7 different strategies all failed. Classification better aligned to available features.</p>
+                        
+                        <h4 class="text-cyan-300 font-bold mb-2 mt-4">Q: Why Gradient Boosting?</h4>
+                        <p class="text-sm text-slate-300">Best accuracy (60.2%) among 5 tested algorithms. Handles class imbalance effectively. Stable cross-validation scores.</p>
+                    </div>
+                    
+                    <div class="bg-slate-800/30 p-5 rounded-xl border border-slate-700">
+                        <h4 class="text-cyan-300 font-bold mb-2">Q: What about 60.2% accuracy?</h4>
+                        <p class="text-sm text-slate-300 mb-2">Not production-ready alone, but good enough for pilot/research. Provides baseline for future improvements. Clear path to 80%+ with better features.</p>
+                        
+                        <h4 class="text-cyan-300 font-bold mb-2 mt-4">Q: Why not 85%+ accuracy?</h4>
+                        <p class="text-sm text-slate-300">Insufficient features (9 only, missing employment/financial data). Extreme class imbalance (125:1). Would need different data or separate models.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6 text-sm text-slate-300">
+                    <div>
+                        <h4 class="text-white font-bold mb-2 border-b border-slate-700 pb-1">Files Submitted</h4>
+                        <ul class="space-y-1 tech-font text-xs text-cyan-200">
+                            <li>FINAL_DEFENSE_NOTEBOOK.ipynb</li>
+                            <li>FINAL_COMPREHENSIVE_REPORT.md</li>
+                            <li>FINAL_PRESENTATION_SLIDES.md</li>
+                            <li>Original analysis: ANALYSIS_REPORT.md</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold mb-2 border-b border-slate-700 pb-1">References</h4>
+                        <ul class="space-y-1 tech-font text-xs text-slate-400">
+                            <li>train_BRCpofr.csv (89,392 rows)</li>
+                            <li>advanced_strategies.py</li>
+                            <li>BASELINE_CLASSIFICATION_RESULTS.csv</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Controls -->
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-cyan-600 rounded-full flex items-center justify-center text-white border border-cyan-500/30 transition-all shadow-lg z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-slate-800/80 hover:bg-cyan-600 rounded-full flex items-center justify-center text-white border border-cyan-500/30 transition-all shadow-lg z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="h-12 border-t border-cyan-900/50 flex items-center justify-between px-8 bg-slate-900/80 backdrop-blur z-10 relative text-sm">
+        <div class="text-slate-500 tech-font">Customer Income Classification with ML</div>
+        <div class="flex gap-2 text-cyan-500 tech-font font-bold">
+            <span id="slide-counter">1</span> / 19
+        </div>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slide-counter');
+        let currentSlide = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            counter.innerText = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>

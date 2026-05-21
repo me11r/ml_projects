@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Critical Thinking Research - AITU</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #F0F8FF;
+            --ocean-blue: #87CEEB;
+            --deep-water: #0077BE;
+            --text-dark: #2c3e50;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: var(--sky-blue);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--ocean-blue), var(--deep-water));
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        section {
+            padding: 80px 10% 40px;
+            min-height: 80vh;
+            border-bottom: 1px solid var(--ocean-blue);
+        }
+        h1, h2 { color: var(--deep-water); }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .chart-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .scrolling-box {
+            height: 300px;
+            overflow-y: scroll;
+            background: #eef7fa;
+            padding: 15px;
+            border-left: 5px solid var(--deep-water);
+            font-style: italic;
+        }
+        .method-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .footer-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--deep-water);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>The Impact of AI Tools on the Critical Thinking Skills of Undergraduate Students</h1>
+    <p>Assignment 4: Data Analysis Presentation</p>
+    <p><strong>Students:</strong> Tazdardarbay M., Mukhamejanov A. | <strong>Group:</strong> IT-2408</p>
+    <a href="#intro" style="color: white; margin-top: 30px;">Начать просмотр ↓</a>
+</header>
+
+<section id="intro">
+    <h2>Introduction & SMART Goals</h2>
+    <div class="grid-container">
+        <div>
+            <p><strong>Purpose:</strong> To investigate the correlation between frequent AI usage and the depth of independent reasoning among IT students[cite: 298].</p>
+            <p><strong>Research Questions:</strong></p>
+            <ul>
+                <li>How does regular AI tool interaction affect the development of critical thinking? [cite: 301]</li>
+                <li>To what extent do students verify AI-generated content? [cite: 303]</li>
+                <li>Does AI usage lead to significant "cognitive offloading"? [cite: 599]</li>
+            </ul>
+        </div>
+        <div class="chart-card">
+            <p><em>"Chatting robots (chatbots) simulate intelligent human language interaction"</em> (Pokrivcakova, 2019)[cite: 581]. This research tests if this simulation replaces student's own cognitive processes.</p>
+        </div>
+    </div>
+</section>
+
+<section id="method">
+    <h2>Methodology</h2>
+    <div class="method-box">
+        <h3>Mixed-Method Approach[cite: 307]:</h3>
+        <p><strong>1. Quantitative:</strong> Online survey via Microsoft Forms (n=68).</p>
+        <p><strong>2. Qualitative:</strong> In-depth interview with a female undergraduate student to identify underlying patterns of behavior[cite: 322].</p>
+        <p><strong>3. Analysis:</strong> Thematic Analysis (Braun & Clarke) used for transcript coding[cite: 499].</p>
+    </div>
+</section>
+
+<section id="results">
+    <h2>Survey Results (Data Insights)</h2>
+    <div class="grid-container">
+        <div class="chart-card">
+            <h3>Demographics: Year of Study</h3>
+            <canvas id="yearChart"></canvas>
+            <p><small>70.6% of respondents are 2nd-year students[cite: 550].</small></p>
+        </div>
+        <div class="chart-card">
+            <h3>Frequency of AI Usage</h3>
+            <canvas id="usageChart"></canvas>
+            <p><small>76.5% use AI tools "Always" or "Often"[cite: 550].</small></p>
+        </div>
+        <div class="chart-card">
+            <h3>Main Tasks for AI</h3>
+            <canvas id="taskChart"></canvas>
+            <p><small>Summarizing and assignment completion are primary drivers[cite: 550].</small></p>
+        </div>
+        <div class="chart-card">
+            <h3>Verification Frequency</h3>
+            <canvas id="verifyChart"></canvas>
+            <p><small>A significant gap exists between usage and cross-checking[cite: 550].</small></p>
+        </div>
+    </div>
+</section>
+
+<section id="qualitative">
+    <h2>Interview Thematic Analysis</h2>
+    <div class="grid-container">
+        <div class="method-box">
+            <h3>Key Themes Identified:</h3>
+            <ul>
+                <li><strong>Theme 1: Cognitive Offloading.</strong> "Writing ideas simply first, then refining them using AI"[cite: 515].</li>
+                <li><strong>Theme 2: Trust vs. Skepticism.</strong> "I realized I depended too much on the AI instead of creating my own ideas"[cite: 555].</li>
+                <li><strong>Theme 3: Skill Deterioration.</strong> "Reduced effort in self-correction"[cite: 517].</li>
+            </ul>
+        </div>
+        <div class="method-box">
+            <h3>Interview Saturation:</h3>
+            <p>Both survey and interview data suggest AI acts as a "support tool" but risks becoming a "full replacement" for thinking if not balanced[cite: 542].</p>
+        </div>
+    </div>
+</section>
+
+<section id="discussion">
+    <h2>Discussion & Literature Comparison</h2>
+    <div class="grid-container">
+        <div>
+            <h3>Findings:</h3>
+            <p>Our data indicates that while AI improves speed (79.4% [cite: 404]), it creates a **Verification Gap**. Students trust the logic of AI if it "makes sense" based on prior knowledge, rather than using peer-reviewed databases[cite: 555, 560].</p>
+        </div>
+        <div>
+            <h3>Theoretical Framework (Scroll):</h3>
+            <div class="scrolling-box">
+                <p><strong>Cahn (2021):</strong> Defines chatbots as dialogue systems between humans and machines[cite: 583]. Our study finds this dialogue is increasingly one-sided.</p>
+                <p><strong>Pokrivcakova (2019):</strong> Learners can learn through direct communication with a robot[cite: 586]. However, our "Theme 1" shows that many students use it for output, not learning.</p>
+                <p><strong>Yavich (2025):</strong> Emphasizes the mediating role of cognitive offloading[cite: 599]. Our survey confirms a "Moderate reduction" in independent reasoning for most participants[cite: 550].</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>AI tools are beneficial for productivity but pose a threat to critical thinking if used as a primary source of reasoning[cite: 541]. Future academic success depends on balancing AI support with rigorous independent analysis[cite: 543].</p>
+    
+    <h3>References:</h3>
+    <ul>
+        <li>Cahn, J. (2021). Chatbot: Architecture, design & development[cite: 592].</li>
+        <li>Pokrivcakova, S. (2019). Preparing teachers for AI in education[cite: 593].</li>
+    </ul>
+    
+    <p><strong>Access Full Data & Transcript:</strong></p>
+    <a href="https://drive.google.com/drive/folders/16rcN342S2JAzSfOKdLh0rE1doiySl5Z4" class="footer-link" target="_blank">Google Drive Folder</a>
+</section>
+
+<script>
+    // Year Chart
+    new Chart(document.getElementById('yearChart'), {
+        type: 'pie',
+        data: {
+            labels: ['2nd Year', '3rd Year', '1st Year'],
+            datasets: [{
+                data: [70.6, 14.7, 14.7],
+                backgroundColor: ['#0077BE', '#87CEEB', '#F0F8FF']
+            }]
+        }
+    });
+
+    // Usage Chart
+    new Chart(document.getElementById('usageChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Always', 'Often', 'Sometimes', 'Occasionally'],
+            datasets: [{
+                label: '% of Students',
+                data: [40, 36.5, 15, 8.5],
+                backgroundColor: '#0077BE'
+            }]
+        }
+    });
+
+    // Task Chart
+    new Chart(document.getElementById('taskChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Summarizing', 'Assignments', 'Brainstorming', 'Coding'],
+            datasets: [{
+                data: [65, 60, 45, 30],
+                backgroundColor: ['#004d80', '#0077BE', '#4db8ff', '#b3e0ff']
+            }]
+        }
+    });
+
+    // Verification Chart
+    new Chart(document.getElementById('verifyChart'), {
+        type: 'polarArea',
+        data: {
+            labels: ['Always Verify', 'Sometimes', 'Rarely', 'Never'],
+            datasets: [{
+                data: [15, 45, 30, 10],
+                backgroundColor: ['#0077BE', '#87CEEB', '#eef7fa', '#d1eaf0']
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+════════════════════════════════════════════════════════════════════════════════
+QUICK REFERENCE - ENDTERM DATA CURATION PROJECT
+════════════════════════════════════════════════════════════════════════════════
+
+ONE-LINER:
+  Data curation filtering HURTS model performance. Keep full data and optimize.
+
+BASELINE (was):
+  R² = 0.08-0.10 | RMSE = 86k | MAE = 47k
+
+FINAL (now):
+  R² = 0.1152 | RMSE = 84k | MAE = 44k | +44% improvement ✅
+
+════════════════════════════════════════════════════════════════════════════════
+7 STRATEGIES TESTED:
+════════════════════════════════════════════════════════════════════════════════
+
+1. Filter good (9.4k)        → R² 0.097  ❌ -12.6%
+2. Mixed 70/30 (13.4k)       → R² 0.099  ❌ -10.8%
+3. Feature hint              → R² 0.117  ✅ +1.7%
+4. Low CLTV ≤100k (19.5k)    → R² 0.097  ❌ -12.6%
+5. Very low ≤50k (12.4k)     → R² -0.48  ❌❌ COLLAPSE
+6. Weighted 2x               → R² 0.113  ❌ -1.7%
+7. Weighted 3x               → R² 0.106  ❌ -7.8%
+
+════════════════════════════════════════════════════════════════════════════════
+KEY FINDING - GOOD PREDICTIONS PATTERN:
+════════════════════════════════════════════════════════════════════════════════
+
+Feature      │ Good % │ Bad % │ Ratio
+─────────────┼────────┼───────┼──────
+CLTV ≤ 50k   │  42%   │  20%  │ 2.17x ⭐
+Single policy│  56%   │  28%  │ 2.00x
+Rural area   │  37%   │  29%  │ 1.28x
+Lower income │  79%   │  83%  │ 0.95x
+
+WHY FILTERING FAILED:
+  • Removes 85% of training signal
+  • Model overfits to remaining 15%
+  • Poor generalization to test set
+  • High variance target needs full spectrum
+
+════════════════════════════════════════════════════════════════════════════════
+START HERE:
+════════════════════════════════════════════════════════════════════════════════
+
+For quick overview:
+  → README.md (5 min)
+
+For full understanding:
+  → ANALYSIS_REPORT.md (20 min)
+
+For presentation:
+  → FINAL_IMPROVED_MODEL.ipynb (interactive)
+
+For reproduction:
+  → Run .py scripts in order
+
+════════════════════════════════════════════════════════════════════════════════
+FILES CREATED:
+════════════════════════════════════════════════════════════════════════════════
+
+Documentation:     README.md, ANALYSIS_REPORT.md, SUMMARY_AND_NEXT_STEPS.txt
+Notebook:          FINAL_IMPROVED_MODEL.ipynb
+Scripts (7):       analysis_good_predictions.py, deep_analysis.py, etc.
+Results (4 CSV):   FINAL_comparison_all_strategies.csv, etc.
+Datasets (4):      train_GOOD_predictions_only.csv, train_MIXED_70good_30bad.csv, etc.
+
+════════════════════════════════════════════════════════════════════════════════
+LESSONS LEARNED:
+════════════════════════════════════════════════════════════════════════════════
+
+✅ WORKS:
+   • Keep full training data
+   • Optimize hyperparameters
+   • Add informative features
+   • Use GradientBoosting over RandomForest
+
+❌ DOESN'T WORK:
+   • Filtering to subsets
+   • Aggressive weighting
+   • Removing "outliers"
+   • Training on isolated segments
+
+════════════════════════════════════════════════════════════════════════════════
+MATH BEHIND FAILURE:
+════════════════════════════════════════════════════════════════════════════════
+
+Information Loss: Removing 85% data = losing 85% of learning signal
+Overfitting:     Model learns subset patterns, can't generalize
+Bias-Variance:   Need full range to learn proper scaling of CLTV (25k-720k)
+
+════════════════════════════════════════════════════════════════════════════════
+RECOMMENDATION FOR IMPROVEMENT:
+════════════════════════════════════════════════════════════════════════════════
+
+1st Priority:    Try XGBoost/LightGBM (5-10% better)
+2nd Priority:    Feature engineering (interactions, polynomials)
+3rd Priority:    Segment-specific models
+4th Priority:    Neural networks (requires more tuning)
+5th Priority:    More/better data collection
+
+════════════════════════════════════════════════════════════════════════════════
